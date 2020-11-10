@@ -9,7 +9,7 @@ from controllers.task_controller import tasks_blueprint
 app = Flask(__name__)
 
 app.register_blueprint(employee_projects_blueprint)
-# app.register_blueprint(employee_tasks_blueprint)
+app.register_blueprint(employee_tasks_blueprint)
 app.register_blueprint(companies_blueprint)
 app.register_blueprint(employee_blueprint)
 app.register_blueprint(project_blueprint)
