@@ -17,7 +17,7 @@ def get_all():
     query = 'SELECT * FROM employee_projects'
     results = run_sql(query)
     for row in results:
-        project = project_db.select(row['project_id'])
+        project = project_db.get(row['project_id'])
         employee = employee_db.get(row['employee_id'])
         employee_project = EmployeeProject(project=project, employee=employee)
         employee_projects.append(employee_project)
@@ -27,7 +27,7 @@ def get_all():
 def select(id):
     query = 'SELECT * FROM employee_projects WHERE id = %s'
     result = run_sql(query, [id])[0]
-    project = project_db.select(result['project_id'])
+    project = project_db.get(result['project_id'])
     employee = employee_db.get(result['employee_id'])
     employee_project = EmployeeProject(employee=employee, project=project)
 

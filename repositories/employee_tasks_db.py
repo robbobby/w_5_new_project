@@ -18,7 +18,7 @@ def get_all():
     for row in results:
         task = task_db.get(row['task_id'])
         employee = employee_db.get(row['employee_id'])
-        employee_task = Employeetask(task=task, employee=employee)
+        employee_task = EmployeeTasks(task=task, employee=employee, id=row['id'])
         employee_tasks.append(employee_task)
 
     return employee_tasks
@@ -28,7 +28,7 @@ def get(id):
     result = run_sql(query, [id])[0]
     task = task_db.get(result['task_id'])
     employee = employee_db.get(result['employee_id'])
-    employee_task = Employeetask(employee=employee, task=task)
+    employee_task = EmployeeTasks(employee=employee, task=task)
 
     return employee_task
 
@@ -54,7 +54,7 @@ def get_employees_project_tasks(emp_id, pro_id):
 
     for row in results:
         task = task_db.get(row['task_id'])
-        employee = employee_db(row['empoyee_id'])
+        employee = employee_db.get(row['employee_id'])
         emp_task = EmployeeTasks(employee, task, row['id'])
         emp_tasks.append(emp_task)
     return emp_tasks

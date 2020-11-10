@@ -1,3 +1,44 @@
 {% extends "base.html" %}{%  block content %}
 <h1>This is the Employees Tasks page</h1>
+                                {##### Add New tasks #####}
+    <a class="button" href="/task/new">New Task</a>
+
+                                {##### Employee tasks #####}
+                                 {### Edit tasks here  ###}
+    {% for task in emp_tasks %}
+        <form action="/tasks/update/{{ task.employee.id }}/{{ task.task.project.id }}/{{ task.task.id }}" method="POST">
+            <div class="everything">
+                <h3>{{ task.task.name }}</h3>
+                <h5>Task of {{ task.task.project.name }}</h5>
+                <div>
+                    <progress value="{{ task.task.completed_amount }}" max="100"></progress>
+                    <input class="button" name="completed_amount" type="number"
+                           value="{{ task.task.completed_amount }}" max="100">
+                    <label> % Completed</label>
+                </div>
+                <div>
+                    <h4 class="everything">Status:
+                        <select class="everything" name="completed">
+                    {% if not task.task.completed %}
+                            <option value="False">In progress</option>
+                            <option value="True">Completed</option>
+                        </select>
+                        {% else  %}
+                            <option value="True">Completed</option>
+                            <option value="False">In progress</option>
+                    {% endif %} </h4>
+                    </select>
+                </div>
+                <div>
+                    <label class="label everything">Description:
+                        <div>
+                            <textarea class="label" class="button" name="description">{{ task.task.description }}</textarea>
+                        </div>`
+                    </label>
+                </div>
+        <input type="submit" class="button" value="Submit">
+        <a class="button" href=".">Cancel</a>
+            </div>
+        </form>
+    {% endfor %}
 {% endblock %}

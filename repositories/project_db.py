@@ -1,5 +1,7 @@
 from db.run_sql import run_sql
 from models.project import Project
+from repositories import company_db
+
 
 def save(project):
     query = 'INSERT INTO projects (name, company_id) VALUES (%s, %s) RETURNING id'
@@ -17,10 +19,11 @@ def get_all():
 
     return projects
 
-def select(project_id):
+def get(project_id):
     query = 'SELECT * FROM projects WHERE id = %s'
     rs = run_sql(query, [project_id])[0]
-    project = Project(name=rs['name'], id=rs['id'], company=rs['company_id'])
+    company = company_db.get(rs['company_id'])
+    project = Project(name=rs['name'], id=rs['id'], company=company)
     return project
 
 def delete(project):

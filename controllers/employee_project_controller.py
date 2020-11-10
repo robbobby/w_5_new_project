@@ -11,4 +11,3 @@ employee_projects_blueprint = Blueprint('employee_projects', __name__)
 def emp_pro():
     emp_pro = emp_pro_db.get_all()
     return render_template('employee_projects/index.html', emp_pro=emp_pro)
-

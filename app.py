@@ -15,9 +15,11 @@ app.register_blueprint(employee_blueprint)
 app.register_blueprint(project_blueprint)
 app.register_blueprint(tasks_blueprint)
 
+
 @app.route('/')
 def main():
     return render_template('index.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)

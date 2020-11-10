@@ -44,7 +44,6 @@ def reroute_to_company_home():
 
 
     ##### Route to company page when signed in #####
-
 @companies_blueprint.route('/company_home/<id>', methods=['GET'])
 def company(id):
     company = company_db.get(id)
