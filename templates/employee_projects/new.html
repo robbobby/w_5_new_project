@@ -1,0 +1,12 @@
+{% extends "base.html" %}{%  block content %}
+    <form action="/employee" method="POST">
+        <input type="text" name="name" required>
+            <select name="company_id" required>Select Project
+                <option value="default" selected hidden disabled>Select Project</option>
+                {% for company in companies %}
+                    <option value="{{ company.id }}">{{ company.name }}</option>
+                {% endfor %}
+        </select>
+        <input class="button" type="submit">
+    </form>
+{% endblock %}

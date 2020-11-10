@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{%  block content %}
+
+    <h2>Logged in as  {{ employee.name }} - Employee of {{ employee.company.name }}</h2>
+
+    <h3>Projects you have access to:</h3>
+    {% for employee_project in employee_projects %}
+            <a class="button" href="/emp_tasks/{{ employee_project.employee.id }}/{{ employee_project.project.id }}">
+                <div class="button">
+                    <h3>Project: {{ employee_project.project.name }}</h3>
+                    <p >Employees Name: {{ employee_project.employee.name }}</p>
+                    <p>Company Name: {{ employee_project.employee.company.name }}</p>
+                </div>
+            </a>
+    {% endfor %}
+{% endblock %}

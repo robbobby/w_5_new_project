@@ -1,0 +1,75 @@
+body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+main {
+    padding: 50px;
+}
+
+.logo {
+    padding: 30px 30px 10px 30px;
+    display: flex;
+    color: #47505A;
+    border: 1px solid #979797;
+    box-shadow: 10px 10px 10px 0 wheat;
+    background-color: dodgerblue;
+    /*opacity: 50%;*/
+    justify-content: space-between;
+    font-size: 15px;
+}
+h1 {
+    margin-left: 20px;
+}
+
+.aligned-left {
+    display: flex;
+}
+
+.inline {
+    display: flex;
+}
+
+header > div > nav > ul > li {
+    display: flex;
+    margin: 00px;
+    width: 100px;
+    height: 40px;
+    justify-content: space-around;
+
+    /*background-color: #47505A;*/
+}
+
+ul > li.a {
+  list-style-type: square;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 10px;
+    border: 1px solid black;
+    background-color: darkslategray;
+    color: white;
+    text-decoration: none;
+    opacity: 90%;
+    box-shadow: 2px 2px 2px 0 white;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.button:hover {
+    /*background-color: darkgray;*/
+    box-shadow: 2px 2px 2px 0 white;
+    opacity: 100%;
+    border: 1px solid white;
+}
+
+.button:active {
+    display: inline-block;
+    padding: 10px 10px;
+    border: 1px solid black;
+    background-color: darkslategray;
+    color: white;
+    text-decoration: none;
+    opacity: 70%;
+    box-shadow: 2px 2px 2px 0 white;
+}

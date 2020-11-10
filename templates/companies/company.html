@@ -1,0 +1,10 @@
+{% extends "base.html" %}{%  block content %}
+<h2>This is the Company Home page</h2>
+    <select name="company_id">
+    {% for project in projects %}
+        <option value="{{ project.id }}">{{ project.name }}</option>
+    {% endfor %}
+
+    </select>
+    <a class="button" href="/project/new">Create new project</a>
+{% endblock %}

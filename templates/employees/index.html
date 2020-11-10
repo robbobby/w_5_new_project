@@ -1,0 +1,23 @@
+{% extends "base.html" %}{%  block content %}
+<h1>This is the employees page</h1>
+
+    <div>
+        <a href="/employees/new" class="button">Register</a>
+    </div>
+
+    <label>Choose Employee:</label>
+    <form action="/employees/selected" method="POST">
+        <select name="employee_id" required>Select Project
+            <option value="NULL" selected hidden disabled>Select Project</option>
+            {% for employee in employees %}
+                <option value="{{ employee.id }}">{{ employee.name }} -
+                {% if employee.company != None %}
+                    {{ employee.company.name }}
+                {% endif %}
+                </option>
+                {% endfor %}
+        </select>
+
+        <input class="button" type="submit" value="Sign in">
+    </form>
+{% endblock %}

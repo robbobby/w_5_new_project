@@ -1,0 +1,17 @@
+{% extends "base.html" %}{%  block content %}
+<h2>This is the company page</h2>
+    <div>
+        <a href="/companies/new" class="button">Create New Company</a>
+    </div>
+
+    <label>Choose company:</label>
+    <form action="/companies/selected" method="POST">
+        <select name="company_id" required>Select Project
+            <option value="default" selected hidden disabled>Select Project</option>
+            {% for company in companies %}
+                <option value="{{ company.id }}">{{ company.name }}</option>
+            {% endfor %}
+        </select>
+        <input class="button" type="submit" value="Sign in">
+    </form>
+{% endblock %}
