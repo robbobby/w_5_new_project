@@ -8,7 +8,7 @@
     <label>Choose Employee:</label>
     <form action="/employees/selected" method="POST">
         <select class="everything" name="employee_id" required>Select Project
-            <option value="NULL" selected hidden disabled>Select Project</option>
+            <option value="NULL" selected hidden disabled>Select Account</option>
             {% for employee in employees %}
                 <option value="{{ employee.id }}">{{ employee.name }} -
                 {% if employee.company != None %}

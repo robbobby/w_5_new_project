@@ -25,7 +25,8 @@ def add_project(com_id, emp_id):
     company = company_db.get(com_id)
     project = Project(request.form['project_name'], company)
     project_db.save(project)
-    return emp_control.route_from_project_to_employee_home(emp_id, com_id)
+    # return emp_control.route_from_project_to_employee_home(emp_id, com_id)
+    return redirect(f'/employee_home/{emp_id}/{com_id}')
 
 @project_blueprint.route('/project/<emp_id>/<pro_id>')
 def project_home_page(emp_id, pro_id):

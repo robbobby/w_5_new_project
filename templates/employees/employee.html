@@ -1,15 +1,30 @@
 {% extends "base.html" %}
 {%  block content %}
 
+                    {# List of Projects that employee is involved in #}
     <h2>Logged in as  {{ employee.name }} - Employee of {{ emp_id }}</h2>
     <a class="button" href="/projects/new/{{ com_id }}/{{ employee.id }}">New Project</a>
-    <h3>Projects you have access to:</h3>
-    {% for employee_project in employee_projects %}
-            <a class="button" href="/emp_tasks/{{ employee_project.employee.id }}/{{ employee_project.project.id }}">
-                <div class="everything">
-                    <h3>Project: {{ employee_project.project.name }}</h3>
-                    <p>Company Name: {{ employee_project.employee.company.name }}</p>
-                </div>
-            </a>
+    <div>
+        <h3>Projects you have access to:</h3>
+        {% for employee_project in employee_projects %}
+        <a class="button" href="/emp_tasks/{{ employee_project.employee.id }}/{{ employee_project.project.id }}">
+            <div class="everything">
+                <h4>Project: {{ employee_project.project.name }}</h4>
+                <p>Company Name: {{ employee_project.employee.company.name }}</p>
+            </div>
+        </a>
     {% endfor %}
+    </div>
+    <div>
+                    {#  List of Projects that company has that employee is not a part of  #}
+    <h3>Projects to join:</h3>
+    {% for project in not_employee_projects %}
+        <div class="everything">
+            <h4>Project: {{ project.name }}</h4>
+            <p>Company Name: {{ project.company.name }}</p>
+            <a class="button" href="/employee_projects/add/{{ emp_id }}/{{ project.id }}">Join Project</a>
+        </div>
+    {% endfor %}
+
+    </div>
 {% endblock %}
