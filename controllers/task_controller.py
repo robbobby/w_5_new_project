@@ -25,4 +25,9 @@ def update_task(emp_id, pro_id, task_id):
     task.description = request.form['description']
     task_db.update(task)
     print("Hello")
-    return emp_control.company(emp_id, task.project.company.id) # Couldn't redirect to a blueprint that isn't in this file
+    # return emp_control.company(emp_id, task.project.company.id) # Couldn't redirect to a blueprint that isn't in this file
+    return redirect(f'/employee_home/{emp_id}/{task.project.company.id}')
+
+@tasks_blueprint.route('/task/new/<pro_id>')
+def new_task_form(pro_id):
+    return render_template('tasks/new.html', pro_id=pro_id)
