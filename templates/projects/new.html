@@ -1,0 +1,7 @@
+{% extends "base.html" %}{%  block content %}
+<h1>New Project Page</h1>
+    <form class="everything" action="/projects/new/{{ com_id }}/{{ emp_id }}" method="POST">
+        <input class="everything" type="text" name="project_name" placeholder="Enter Project Name" required>
+        <input class="button" type="submit">
+    </form>
+{% endblock %}

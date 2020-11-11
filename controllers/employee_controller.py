@@ -28,8 +28,11 @@ def reroute_to_employee_home():
 
 @employee_blueprint.route('/employees/selected', methods=['POST'])
 def user_selected():
-    employee = employee_db.get(request.form['employee_id'])
-    return redirect(f'/employee_home/{employee.id}/{employee.company.id}')
+    try:
+        employee = employee_db.get(request.form['employee_id'])
+        return redirect(f'/employee_home/{employee.id}/{employee.company.id}')
+    except:
+        return redirect('/employees')
 
 @employee_blueprint.route('/employee_home/<emp_id>/<com_id>', methods=['GET'])
 def company(emp_id, com_id):
@@ -37,4 +40,7 @@ def company(emp_id, com_id):
     company = company_db.get(com_id)
     employee_projects = emp_pro_db.get_employees_projects(employee)
 
-    return render_template('employees/employee.html', employee=employee, employee_projects=employee_projects)
+    return render_template('employees/employee.html', employee=employee, employee_projects=employee_projects, com_id=com_id, emp_id=emp_id)
+
+def route_from_project_to_employee_home(emp_id, com_id):
+    return redirect(f'/employee_home/{emp_id}/{com_id}')
