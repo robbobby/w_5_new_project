@@ -1,8 +1,34 @@
 {% extends "base.html" %}{%  block content %}
 <h1>Add a new task to a project here</h1>
-    <form action="/task/new/{{ pro_id }}" method="POST">
-        <div class="everything">
-            <h3>New Task:</h3>
-        </div>
-    </form>
+    <div class="everything">
+        <h3>New Task:</h3>
+        <form action="/task/new/{{ pro_id }}/ {{ emp_id }}" method="POST">
+            <div class="everything-1">
+                <label>Task Name: </label>
+                <input class="everything" type="text" name="name" placeholder="Enter name here" required>
+            </div>
+            <div class="everything-1">
+                <label>Amount completed: </label>
+                <input type="number" name="completed_amount" value="0" max="100" min="0" style="width: 45px">
+            </div>
+            <div class="everything-1">
+                <label>Completed: </label>
+                <input class="everything" type="checkbox" name="completed">
+            </div>
+            <div>
+                <label>Description</label>
+                <div>
+                    <textarea name="description" placeholder="Enter description here" cols="30" rows="10"></textarea>
+                </div>
+            </div>
+            <div>
+                <input type="submit" class="button" value="Submit">
+                <a class="button" href=".{{ pro_id }}">Restart</a>
+            </div>
+            <div>
+                <label>Assign self to task</label>
+                <input type="checkbox" name="assign_to_project">
+            </div>
+        </form>
+    </div>
 {% endblock %}

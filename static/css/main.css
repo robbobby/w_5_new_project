@@ -90,3 +90,16 @@ ul > li.a {
 .label {
     width: 440px;
 }
+
+.everything-1 {
+    /*display: inline-block;*/
+    padding: 10px 10px;
+    border: 1px solid black;
+    background-color: darkslategray;
+    color: white;
+    text-decoration: none;
+    opacity: 90%;
+    box-shadow: 2px 2px 2px 0 white;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}

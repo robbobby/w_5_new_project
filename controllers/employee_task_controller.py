@@ -13,4 +13,4 @@ employee_tasks_blueprint = Blueprint('employee_tasks', __name__)
 @employee_tasks_blueprint.route('/emp_tasks/<emp_id>/<pro_id>')
 def emp_tasks(emp_id, pro_id):
     emp_tasks = emp_task_db.get_employees_project_tasks(emp_id, pro_id)
-    return render_template('employee_tasks/index.html', emp_tasks=emp_tasks, pro_id=pro_id)
+    return render_template('employee_tasks/index.html', emp_tasks=emp_tasks, pro_id=pro_id, emp_id=emp_id)
