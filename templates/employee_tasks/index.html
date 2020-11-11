@@ -1,14 +1,16 @@
 {% extends "base.html" %}{%  block content %}
 <h1>This is the Employees Tasks page</h1>
                                 {##### Add New tasks #####}
-    <a class="button" href="/task/new/{{ pro_id }}/{{ emp_id }}">New Task</a>
+    <a class="button" href="/task/new/{{ pro_id }}/{{ emp_id }}">Add New Task</a>
 
                                 {##### Employee tasks #####}
                                  {### Edit tasks here  ###}
     {% for task in emp_tasks %}
+        <div class="everything-1">
+            <h3>Current Tasks:</h3>
         <form action="/tasks/update/{{ task.employee.id }}/{{ task.task.project.id }}/{{ task.task.id }}" method="POST">
             <div class="everything">
-                <h3>{{ task.task.name }}</h3>
+                <h4>{{ task.task.name }}</h4>
                 <h5>Task of {{ task.task.project.name }}</h5>
                 <div>
                     <progress value="{{ task.task.completed_amount }}" max="100"></progress>
@@ -40,8 +42,45 @@
         <a class="button" href=".">Cancel</a>
             </div>
         </form>
+        </div>
     {% endfor %}
 
                                 {#####  Tasks employee can take  #####}
+<div class="everything-1">
+    <h3>Tasks on the project:</h3>
+    {% for new_task in new_tasks %}
+        <div class="everything-1">
+            <div class="everything-1">
+                <h3>{{ new_task.name }}</h3>
+            </div>
+            <div class="everything">
+                <h4>Progress:</h4>
+                <div>
+                    <progress value {{ new_task.completed_amount }}></progress>
+                </div>
+                <div>
+                    <label>{{ new_task.completed_amount }}%</label>
+                </div>
+            </div>
+        <div class="everything">
+            <h4>Status:</h4>
+            <div>
+                {% if new_task.completed %}
+                    <p>Completed</p>
+                {% else %}
+                    <label>In Progress</label>
+                {% endif %}
+            </div>
+        </div>
+            <div class="everything">
+                <h4>Description:</h4>
+                <div>
+                    {{ new_task.description }}
+                </div>
+            </div>
+            <a class="button" href="/emp_task/new/{{ emp_id }}/{{ new_task.id }}">Join Task</a>
+        </div>
+    {% endfor %}
+</div>
 
 {% endblock %}

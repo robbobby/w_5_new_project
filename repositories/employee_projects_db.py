@@ -7,7 +7,8 @@ from repositories import company_db
 
 
 def save(employee_project):
-    query = 'INSERT INTO employee_projects (employee_id, project_id) VALUES (%s, %s) RETURNING id'
+    query = 'INSERT INTO employee_projects (employee_id, project_id) ' \
+            'VALUES (%s, %s) RETURNING id'
     values = [employee_project.employee.id, employee_project.project.id]
     results = run_sql(query, values)
     employee_project.id = results[0]['id']
@@ -42,7 +43,8 @@ def delete(id):
 
 
 def update(employee_project):
-    query = 'UPDATE employee_projects SET (employee_id, project_id) = (%s, %s) WHERE id = %s'
+    query = 'UPDATE employee_projects SET (employee_id, project_id) = (%s, %s) ' \
+            'WHERE id = %s'
     values = [employee_project.employee.id, employee_project.project.id, employee_project.id]
     run_sql(query, values)
 
@@ -53,7 +55,9 @@ def delete_all():
 
 def get_employees_projects(employee):
     emp_projects = []
-    query = 'SELECT * FROM projects INNER JOIN employee_projects ON employee_projects.project_id = projects.id WHERE employee_id = %s'
+    query = 'SELECT * FROM projects ' \
+            'INNER JOIN employee_projects ON employee_projects.project_id = projects.id ' \
+            'WHERE employee_id = %s'
     results = run_sql(query, [employee.id])
 
     for row in results:

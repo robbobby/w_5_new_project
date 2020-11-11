@@ -41,7 +41,8 @@ def company(emp_id, com_id):
     employee_projects = emp_pro_db.get_employees_projects(employee)
     not_employee_projects = emp_pro_db.get_projects_employee_not_have(employee, company)
 
-    return render_template('employees/employee.html', employee=employee, employee_projects=employee_projects, com_id=com_id, emp_id=emp_id, not_employee_projects=not_employee_projects)
+    return render_template('employees/employee.html', employee=employee, employee_projects=employee_projects,
+                           com_id=com_id, emp_id=emp_id, not_employee_projects=not_employee_projects)
 
 def route_from_project_to_employee_home(emp_id, com_id):
     return redirect(f'/employee_home/{emp_id}/{com_id}')

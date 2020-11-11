@@ -3,6 +3,7 @@ import repositories.employee_db as employee_db
 import repositories.task_db as task_db
 from models.employee import Employee
 from models.employee_task import EmployeeTasks
+from repositories import project_db
 
 
 def save(employee_task):
@@ -69,7 +70,21 @@ def get_all_employee_tasks(emp_id):
 
     for row in results:
         task = task_db.get(row['task_id'])
-        employee = employee_db(row['empoyee_id'])
+        employee = employee_db.get(row['employee_id'])
         emp_task = EmployeeTasks(employee, task, row['id'])
         emp_tasks.append(emp_task)
     return emp_tasks
+
+def get_new_tasks_available_for_project(project, emp_id):
+    new_tasks = []
+    emp_tasks = get_all_employee_tasks(emp_id)
+    tasks = task_db.get_project_tasks(project.id)
+    for task in tasks:
+        current_task = False
+        for emp_task in emp_tasks:
+            if task.id == emp_task.task.id:
+                current_task = True
+        if not current_task:
+            new_task = task_db.get(task.id)
+            new_tasks.append(new_task)
+    return new_tasks

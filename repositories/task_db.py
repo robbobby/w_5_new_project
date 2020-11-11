@@ -6,9 +6,8 @@ from models.project import Project
 def save(task):
     query = 'INSERT INTO tasks (name, description, completed_amount, completed, project_id) ' \
             'VALUES (%s, %s, %s, %s, %s) RETURNING id'
-
-    result = run_sql(query, [task.name, task.description, task.completed_amount,
-                             task.completed, task.project.id])
+    values = [task.name, task.description, task.completed_amount, task.completed, task.project.id]
+    result = run_sql(query, values)
     task.id = result[0]['id']
 
 def get_all():
@@ -27,7 +26,7 @@ def get(task_id):
     query = 'SELECT * FROM tasks WHERE id = %s'
     rs = run_sql(query, [task_id])[0]
     project = project_db.get(rs['project_id'])
-    task = Task(name=rs['name'], description=rs['description'], id=task_id,
+    task = Task(name=rs['name'], description=rs['description'], id=rs['id'],
                 project=project, completed_amount=rs['completed_amount'],
                 completed=rs['completed'])
     return task
@@ -44,3 +43,12 @@ def update(task):
 
 def delete_all():
     run_sql('DELETE FROM tasks')
+
+def get_project_tasks(pro_id):
+    tasks = []
+    query = 'SELECT * FROM tasks WHERE project_id = %s'
+    results = run_sql(query, [pro_id])
+    for row in results:
+        task = get(row['id'])
+        tasks.append(get(row['id']))
+    return tasks
